@@ -57,6 +57,11 @@ table {
 /* Styling
 */
 
+body {
+  background: #EEEEEE;
+  color: #333333;
+}
+
 body, .city-dropdown {
   font-family: 'Josefin Sans', sans-serif;
 }
@@ -67,32 +72,31 @@ body, .city-dropdown {
 
 .weather-header {
   font-size: 2em;
-  margin: 1% 2%;
+  font-weight: bold;
+  margin: 2%;
 }
 
 .city-dropdown {
-  margin: 1% 2%;
+  text-align: center;
+  margin: 1% 1%;
   padding: 0.6%;
-  font-size: 0.8em;
+  font-size: 1em;
   position: relative;
   display: inline-block;
   color: #333333;
   border: 0;
   border-radius: 2px;
   outline: 0;
-  background: #95B8D1;
+  background: #9BC1BC;
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
 }
 
-.city-dropdown:hover {
-  color: #333333;
-  background: #9BC1BC;
-}
-
 .view-city {
+  margin-top: 0.5%;
   font-weight: bold;
+  font-size: 1em;
 }
 
 .weather-list-item {
@@ -100,7 +104,7 @@ body, .city-dropdown {
   display: inline-block;
   margin: 3%;
   padding: 1%;
-  border: 0.1em solid #333333;
+  border: 0.1em solid rgba(51, 51, 51, 0.30);
   font-size: 1.1em;
   max-width: 10em; 
   height: auto;
@@ -111,6 +115,7 @@ body, .city-dropdown {
 }
 
 .icon {
+  margin: 1%;
   width: auto;
   height: auto;
   max-width: 4em;
@@ -126,7 +131,7 @@ and (max-device-width : 740px) {
     display: block;
     margin: 3%;
     padding: 1%;
-    border: 0.1em solid black;
+    border: 0.1em solid rgba(51, 51, 51, 0.30);
     max-width: 100%;
   }
 }

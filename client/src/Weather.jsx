@@ -9,9 +9,19 @@ export default class Weather extends React.Component {
       area: '',
       forecast: []
     }
+
+    this.handleInputChange = debounce(this.handleInputChange, 500);
   }
 
   handleSelect(e) {
+    e.preventDefault();
+    this.setState({
+      area: e.target.value
+    });
+  }
+
+  handleInputChange(e) {
+    e.preventDefault();
     this.setState({
       area: e.target.value
     });
@@ -33,17 +43,26 @@ export default class Weather extends React.Component {
       <div className="weather-container">
         <p className="weather-header">Weather Seeker</p>
         <div className="dropdown">
+          <p>Weather forecast for:</p>
           <select className="city-dropdown" defaultValue={this.state.area} onChange={this.handleSelect.bind(this)}>
             <option value="">Popular Cities</option>
-            <option value="Austin, TX">Austin</option>
-            <option value="Los Angeles, CA">Los Angeles</option>
-            <option value="Miami, FL">Miami</option>
-            <option value="New York, NY">New York</option>
-            <option value="San Francisco, CA">San Francisco</option>
-            <option value="Seattle, WA">Seattle</option>
-            <option value="Vancouver, BC, CA">Vancouver</option>
+            <option value="Austin, TX">Austin, TX</option>
+            <option value="Honolulu, HI">Honolulu, HI</option>
+            <option value="London, England">London, England</option>
+            <option value="Los Angeles, CA">Los Angeles, CA</option>
+            <option value="Miami, FL">Miami, FL</option>
+            <option value="New York, NY">New York, NY</option>
+            <option value="San Francisco, CA">San Francisco, CA</option>
+            <option value="Seattle, WA">Seattle, WA</option>
+            <option value="Tokyo, JP">Tokyo, JP</option>
+            <option value="Vancouver, BC, CA">Vancouver, BC, CA</option>
           </select>
-          <p>Weather forecast for:</p> <p className="view-city">{this.state.area}</p>
+        </div>
+        <div className="input">
+          <label>
+          Find a city:
+            <input className="city-input" type="text" placeholder="City, (State or Country)" onChange={this.handleInputChange.bind(this)}/>
+          </label>
         </div>
         <div className="forecast-container">
           <WeatherList forecast={this.state.forecast} />

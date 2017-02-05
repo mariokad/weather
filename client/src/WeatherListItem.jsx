@@ -47,12 +47,11 @@ export default class WeatherListItem extends React.Component {
   }
 
   render() {
-    console.log(this.props.forecastItem);
     return (
       <div className="weather-list-item">
         <p className="date">{this.props.forecastItem.day}, {this.props.forecastItem.date}</p>
-        <p className="highTemp">High: {this.props.forecastItem.high}</p>
-        <p className="lowTemp">Low: {this.props.forecastItem.low}</p>
+        <p className="highTemp">High: {this.props.forecastItem.high}°F</p>
+        <p className="lowTemp">Low: {this.props.forecastItem.low}°F</p>
         <p className="description">{this.props.forecastItem.text}</p>
         <img className="icon" src={this.state.image} />
       </div>
