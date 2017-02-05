@@ -60,7 +60,7 @@ export default class Weather extends React.Component {
             Find a city:
           </label>
           <br />
-          <input className="city-input" type="text" placeholder="City, (State or Country)" onChange={this.handleInputChange.bind(this)}/>
+          <input className="city-input" type="text" placeholder="City, (State or Country)" onChange={(e) => this.setState({area: e.target.value})}/>
         </div>
         <div className="forecast-container">
           <WeatherList forecast={this.state.forecast} />

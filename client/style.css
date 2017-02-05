@@ -93,10 +93,16 @@ body, .city-dropdown {
   -moz-appearance: none;
 }
 
-.view-city {
-  margin-top: 0.5%;
-  font-weight: bold;
-  font-size: 1em;
+.city-input {
+  margin-top: 1%;
+  padding: 0.5%;
+  border: 0.5em solid #95B8D1;
+  transition: border 0.3s;
+  outline: none;
+}
+
+.city-input:focus {
+  border: 0.5em solid #8C93A8;
 }
 
 .weather-list-item {
@@ -106,7 +112,7 @@ body, .city-dropdown {
   padding: 1%;
   border: 0.1em solid rgba(51, 51, 51, 0.30);
   font-size: 1.1em;
-  max-width: 10em; 
+  max-width: 9em; 
   height: auto;
 }
 
