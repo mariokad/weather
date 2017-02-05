@@ -1,27 +1,49 @@
 import React from 'react';
+import axios from 'axios';
+import WeatherList from './WeatherList.jsx';
 
 export default class Weather extends React.Component {
   constructor() {
     super();
     this.state = {
-      area: 'San Francisco, CA'
+      area: '',
+      forecast: []
     }
   }
 
   handleSelect(e) {
-    this.setState({area: e.target.value});
+    this.setState({
+      area: e.target.value
+    });
+  }
+
+  getWeather() {
+    let query = 'select * from weather.forecast where woeid in (select woeid from geo.places(1) where text="' + this.state.area.toLowerCase() + '")';
+    axios.get('https://query.yahooapis.com/v1/public/yql?q=' + query + '&format=json')
+      .then((res) => this.setState({forecast: res.data.query.results.channel.item.forecast}))
+      .catch((err) => console.log(err));
+  }
+
+  componentDidUpdate() {
+    this.getWeather();
   }
 
   render() {
-    var message = 'You selected ' + this.state.area;
+    let message = 'You selected ' + this.state.area;
     return (
-      <div>
-        <select defaultValue={this.state.area} onChange={this.handleSelect.bind(this)}>
-          <option value="San Francisco, CA">San Francisco, CA</option>
-          <option value="New York, NY">New York, NY</option>
-          <option value="Seattle, WA">Seattle, WA</option>
-        </select>
-        <p>{message}</p>
+      <div className="weather-container">
+        <div className="dropdown">
+          <select className="city-dropdown" defaultValue={this.state.area} onChange={this.handleSelect.bind(this)}>
+            <option value="">Choose City</option>
+            <option value="Los Angeles, CA">Los Angeles, CA</option>
+            <option value="San Francisco, CA">San Francisco, CA</option>
+            <option value="Seattle, WA">Seattle, WA</option>
+          </select>
+          <p>{message}</p>
+        </div>
+        <div className="forecast-container">
+          <WeatherList forecast={this.state.forecast} />
+        </div>
       </div>
     );
   }
