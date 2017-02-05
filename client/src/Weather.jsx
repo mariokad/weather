@@ -9,8 +9,6 @@ export default class Weather extends React.Component {
       area: '',
       forecast: []
     }
-
-    this.handleInputChange = debounce(this.handleInputChange, 500);
   }
 
   handleSelect(e) {
@@ -43,7 +41,6 @@ export default class Weather extends React.Component {
       <div className="weather-container">
         <p className="weather-header">Weather Seeker</p>
         <div className="dropdown">
-          <p>Weather forecast for:</p>
           <select className="city-dropdown" defaultValue={this.state.area} onChange={this.handleSelect.bind(this)}>
             <option value="">Popular Cities</option>
             <option value="Austin, TX">Austin, TX</option>
@@ -60,9 +57,10 @@ export default class Weather extends React.Component {
         </div>
         <div className="input">
           <label>
-          Find a city:
-            <input className="city-input" type="text" placeholder="City, (State or Country)" onChange={this.handleInputChange.bind(this)}/>
+            Find a city:
           </label>
+          <br />
+          <input className="city-input" type="text" placeholder="City, (State or Country)" onChange={this.handleInputChange.bind(this)}/>
         </div>
         <div className="forecast-container">
           <WeatherList forecast={this.state.forecast} />
