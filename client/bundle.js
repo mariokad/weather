@@ -10122,16 +10122,51 @@ var Weather = function (_React$Component) {
 
   function Weather() {
     (0, _classCallCheck3.default)(this, Weather);
-    return (0, _possibleConstructorReturn3.default)(this, (Weather.__proto__ || (0, _getPrototypeOf2.default)(Weather)).call(this));
+
+    var _this = (0, _possibleConstructorReturn3.default)(this, (Weather.__proto__ || (0, _getPrototypeOf2.default)(Weather)).call(this));
+
+    _this.state = {
+      area: 'San Francisco, CA'
+    };
+    return _this;
   }
 
   (0, _createClass3.default)(Weather, [{
+    key: 'handleSelect',
+    value: function handleSelect(e) {
+      this.setState({ area: e.target.value });
+    }
+  }, {
     key: 'render',
     value: function render() {
+      var message = 'You selected ' + this.state.area;
       return _react2.default.createElement(
-        'h1',
+        'div',
         null,
-        'hi'
+        _react2.default.createElement(
+          'select',
+          { defaultValue: this.state.area, onChange: this.handleSelect.bind(this) },
+          _react2.default.createElement(
+            'option',
+            { value: 'San Francisco, CA' },
+            'San Francisco, CA'
+          ),
+          _react2.default.createElement(
+            'option',
+            { value: 'New York, NY' },
+            'New York, NY'
+          ),
+          _react2.default.createElement(
+            'option',
+            { value: 'Seattle, WA' },
+            'Seattle, WA'
+          )
+        ),
+        _react2.default.createElement(
+          'p',
+          null,
+          message
+        )
       );
     }
   }]);
