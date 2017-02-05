@@ -29,17 +29,18 @@ export default class Weather extends React.Component {
   }
 
   render() {
-    let message = 'You selected ' + this.state.area;
     return (
       <div className="weather-container">
+        <p className="weather-header">Weather Seeker</p>
         <div className="dropdown">
           <select className="city-dropdown" defaultValue={this.state.area} onChange={this.handleSelect.bind(this)}>
             <option value="">Choose City</option>
             <option value="Los Angeles, CA">Los Angeles, CA</option>
+            <option value="New York, NY">New York, NY</option>
             <option value="San Francisco, CA">San Francisco, CA</option>
             <option value="Seattle, WA">Seattle, WA</option>
           </select>
-          <p>{message}</p>
+          <p>Weather forecast for:</p> <p className="view-city">{this.state.area}</p>
         </div>
         <div className="forecast-container">
           <WeatherList forecast={this.state.forecast} />

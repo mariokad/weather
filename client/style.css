@@ -57,10 +57,65 @@ table {
 /* Styling
 */
 
-body {
-  
+body, .city-dropdown {
+  font-family: 'Josefin Sans', sans-serif;
+}
+
+.weather-container {
+  text-align: center;
+}
+
+.weather-header {
+  font-size: 2em;
+  margin: 1% 2%;
+}
+
+.city-dropdown {
+  margin: 1% 2%;
+  padding: 0.6%;
+  font-size: 0.8em;
+  position: relative;
+  display: inline-block;
+  color: #333333;
+  border: 0;
+  border-radius: 2px;
+  outline: 0;
+  background: #95B8D1;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+.city-dropdown:hover {
+  color: #333333;
+  background: #DBCDC6;
+}
+
+.view-city {
+  font-weight: bold;
+}
+
+.weather-list-item {
+  display: inline-block;
+  margin: 3%;
+  padding: 1%;
+  border: 0.1em solid #333333;
+  font-size: 1.1em;
 }
 
 .date {
   font-weight: bold;
+}
+
+/* Smartphones (portrait and landscape) ----------- */
+@media only screen
+and (min-device-width : 320px) 
+and (max-device-width : 740px) {
+/* Styles */
+  .weather-list-item {
+    display: block;
+    margin: 3%;
+    padding: 1%;
+    border: 0.1em solid black;
+  }
 }
