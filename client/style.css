@@ -88,7 +88,7 @@ body, .city-dropdown {
 
 .city-dropdown:hover {
   color: #333333;
-  background: #DBCDC6;
+  background: #9BC1BC;
 }
 
 .view-city {
@@ -96,15 +96,25 @@ body, .city-dropdown {
 }
 
 .weather-list-item {
+  background: rgba(220, 206, 199, 0.30);
   display: inline-block;
   margin: 3%;
   padding: 1%;
   border: 0.1em solid #333333;
   font-size: 1.1em;
+  max-width: 10em; 
+  height: auto;
 }
 
 .date {
   font-weight: bold;
+}
+
+.icon {
+  width: auto;
+  height: auto;
+  max-width: 4em;
+  max-height: 4em;
 }
 
 /* Smartphones (portrait and landscape) ----------- */
@@ -117,5 +127,6 @@ and (max-device-width : 740px) {
     margin: 3%;
     padding: 1%;
     border: 0.1em solid black;
+    max-width: 100%;
   }
 }
