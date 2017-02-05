@@ -46,6 +46,22 @@ export default class WeatherListItem extends React.Component {
     return true;
   }
 
+  // componentWillUpdate() {
+  //   this.getWeatherImage();
+  // }
+
+  // componentDidUpdate() {
+  //   this.getWeatherImage();
+  // }
+
+  // componentWillMount() {
+  //   this.getWeatherImage();
+  // }
+
+  // componentDidMount() {
+  //   this.getWeatherImage();
+  // }
+
   render() {
     return (
       <div className="weather-list-item">

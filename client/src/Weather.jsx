@@ -6,9 +6,18 @@ export default class Weather extends React.Component {
   constructor() {
     super();
     this.state = {
-      area: '',
-      forecast: []
+      area: decodeURI(document.cookie.split('area=')[1].split(';')[0]) || '',
+      forecast: JSON.parse(decodeURI(document.cookie.split('forecast=')[1])) || []
     }
+  }
+
+  makeCookie(val) {
+    const today = new Date();
+    const expire = new Date();
+
+    expire.setTime(today.getTime() + (360000 * 24 * 365));
+    document.cookie = 'area=' + encodeURI(val) + ';expires' + expire.toGMTString();
+    document.cookie = 'forecast=' + encodeURI(JSON.stringify(this.state.forecast)) + ';expires' + expire.toGMTString();
   }
 
   handleSelect(e) {
@@ -16,14 +25,16 @@ export default class Weather extends React.Component {
     this.setState({
       area: e.target.value
     });
+    this.makeCookie(e.target.value);
+    this.getWeather();
   }
 
-  handleInputChange(e) {
-    e.preventDefault();
-    this.setState({
-      area: e.target.value
-    });
-  }
+  // handleInputChange(e) {
+  //   e.preventDefault();
+  //   this.setState({
+  //     area: e.target.value
+  //   });
+  // }
 
   getWeather() {
     let query = 'select * from weather.forecast where woeid in (select woeid from geo.places(1) where text="' + this.state.area.toLowerCase() + '")';
@@ -37,6 +48,7 @@ export default class Weather extends React.Component {
   }
 
   render() {
+    console.log(this.state);
     return (
       <div className="weather-container">
         <p className="weather-header">Weather Seeker</p>
@@ -45,20 +57,15 @@ export default class Weather extends React.Component {
             <option value="">Popular Cities</option>
             <option value="Austin, TX">Austin, TX</option>
             <option value="Honolulu, HI">Honolulu, HI</option>
-            <option value="London, England">London, England</option>
             <option value="Los Angeles, CA">Los Angeles, CA</option>
             <option value="Miami, FL">Miami, FL</option>
             <option value="New York, NY">New York, NY</option>
             <option value="San Francisco, CA">San Francisco, CA</option>
             <option value="Seattle, WA">Seattle, WA</option>
-            <option value="Tokyo, JP">Tokyo, JP</option>
-            <option value="Vancouver, BC, CA">Vancouver, BC, CA</option>
           </select>
         </div>
         <div className="input">
-          <label>
-            Find a city:
-          </label>
+          Find a city:
           <br />
           <input className="city-input" type="text" placeholder="City, (State or Country)" onChange={(e) => this.setState({area: e.target.value})}/>
         </div>
