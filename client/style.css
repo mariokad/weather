@@ -175,15 +175,11 @@ body, .city-dropdown {
   margin: 1% 0;
 }
 
-/*.up-scroll-arrow {
-  margin-bottom: -10%;
-}*/
-
 .forecast-container {
   width: 49%;
   height: 25em;
   float: right;
-  /*margin-top: 5%;*/
+  margin-top: 4%;
   width: 49%;
   overflow-x: hidden;
   overflow-y: scroll;
