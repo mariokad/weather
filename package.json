@@ -6,8 +6,8 @@
   "scripts": {
     "webpack": "webpack -w",
     "server": "node ./server/index.js",
-    "dev": "concurrent --kill-others \"npm run webpack\" \"npm run server\"",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "concurrent --kill-others \"npm run webpack\" \"npm run server\"",
+    "test": "node ./test/test.js --compilers js:babel-core/register --recursive"
   },
   "repository": {
     "type": "git",
@@ -36,6 +36,10 @@
     "webpack": "^2.2.1"
   },
   "devDependencies": {
-    "concurrently": "^3.1.0"
+    "concurrently": "^3.1.0",
+    "jsdom": "^9.10.0",
+    "mocha": "^3.2.0",
+    "mocha-jsdom": "^1.1.0",
+    "react-addons-test-utils": "^15.4.2"
   }
 }
