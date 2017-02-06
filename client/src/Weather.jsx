@@ -101,21 +101,20 @@ export default class Weather extends React.Component {
           </select>
         </div>
         <div className="input">
-          Find a city:
-          <br />
           <input className="city-input" type="text" placeholder="City, (State or Country)" onChange={(e) => this.setState({area: e.target.value})}/>
         </div>
         <div className="forecast-days">
           <div className="today-forecast">
-            <p className="today-date">{this.state.forecast[0].day}, {this.state.forecast[0].date}</p>
-            <div className="today-high-temp"><p className="high-temp-icon">▲</p> {this.state.forecast[0].high}°F</div>
-            <div className="today-low-temp">{this.state.forecast[0].low}°F <p className="low-temp-icon">▼</p></div>
-            <p className="today-description">{this.state.forecast[0].text}</p>
+            <div className="today-info">
+              <p className="today-date">{this.state.forecast[0].day}, {this.state.forecast[0].date}</p>
+              <div className="today-high-temp"><p className="high-temp-icon">▲</p> {this.state.forecast[0].high}°F</div>
+              <div className="today-low-temp">{this.state.forecast[0].low}°F <p className="low-temp-icon">▼</p></div>
+              <p className="today-description">{this.state.forecast[0].text}</p>
+            </div>
             <div className="today-icon-contain">
               <img className="today-icon" src={this.getWeatherImage(this.state.forecast[0])} />
             </div>
-            <div className="today-area">{city.charAt(0).toUpperCase() + city.slice(1)  + ', ' + stateco.charAt(0).toUpperCase() + stateco.slice(1)}
-              </div>
+            <div className="today-area">{city.charAt(0).toUpperCase() + city.slice(1)  + ', ' + stateco.charAt(0).toUpperCase() + stateco.slice(1)}</div>
           </div>
           <div className="forecast-container">
             <WeatherList forecast={this.state.forecast.slice(1)} />

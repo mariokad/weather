@@ -37,11 +37,11 @@ export default class WeatherListItem extends React.Component {
           <p className="description">{this.props.forecastItem.text}</p>
         </div>
         <div className="info">
+          <img className="icon" src={this.getWeatherImage(this.props.forecastItem)} />
           <div className="temp">
             <div className="high-temp"><p className="high-temp-icon">▲</p> {this.props.forecastItem.high}°F</div>
             <div className="low-temp">{this.props.forecastItem.low}°F <p className="low-temp-icon">▼</p></div>
           </div>
-          <img className="icon" src={this.getWeatherImage(this.props.forecastItem)} />
         </div>
       </div>
     );

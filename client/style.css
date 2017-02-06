@@ -57,13 +57,18 @@ table {
 /* Styling
 */
 
+body,
+html {
+  overflow: hidden;
+}
+
 body {
   background: #EEEEEE;
   color: #333333;
 }
 
 body, .city-dropdown {
-  font-family: 'Josefin Sans', sans-serif;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .weather-container {
@@ -71,14 +76,19 @@ body, .city-dropdown {
 }
 
 .weather-header {
-  font-size: 2em;
+  font-size: 2.3em;
   font-weight: bold;
-  margin: 2%;
+  margin: 1%;
+}
+
+.dropdown,
+.input {
+  display: inline;
 }
 
 .city-dropdown {
   text-align: center;
-  margin: 1% 1%;
+  margin: 0.5% 1%;
   padding: 0.6%;
   font-size: 1em;
   position: relative;
@@ -94,7 +104,6 @@ body, .city-dropdown {
 }
 
 .city-input {
-  margin-top: 1%;
   padding: 0.5%;
   border: 0.5em solid #95B8D1;
   transition: border 0.3s;
@@ -107,12 +116,13 @@ body, .city-dropdown {
 
 .forecast-days {
   width: 100%;
+  height: 100%;
   margin-top: 2%;
-  border-bottom: 0.2em solid #797B84;
+  border-top: 0.2em solid #797B84;
 }
 
 .today-forecast {
-  margin-top: 2%;
+  margin-top: 0.8%;
   width: 49%;
   padding: 1%;
   float: left;
@@ -165,10 +175,19 @@ body, .city-dropdown {
   margin: 1% 0;
 }
 
+/*.up-scroll-arrow {
+  margin-bottom: -10%;
+}*/
+
 .forecast-container {
   width: 49%;
-  height: 100%;
+  height: 25em;
   float: right;
+  /*margin-top: 5%;*/
+  width: 49%;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  white-space: nowrap;
 }
 
 .weather-list-item {
@@ -195,20 +214,20 @@ body, .city-dropdown {
 }
 
 .day {
-  font-size: 1.3em;
+  font-size: 1.1em;
 }
 
 .date {
-  font-size: 1em;
+  font-size: 0.9em;
+}
+
+.description {
+  font-size: 0.7em;
 }
 
 .day,
 .date {
   font-weight: bold;
-}
-
-.description {
-  font-size: 0.9em;
 }
 
 .day,
@@ -219,7 +238,7 @@ body, .city-dropdown {
 }
 
 .temp {
-  width: 50%;
+  width: 40%;
   float: right;
 }
 
@@ -230,16 +249,160 @@ body, .city-dropdown {
   max-height: 80%;
 }
 
-/* Smartphones (portrait and landscape) ----------- */
+/* Smartphones (portrait) ----------- */
 @media only screen
 and (min-device-width : 320px) 
-and (max-device-width : 740px) {
+and (max-device-width : 420px) {
 /* Styles */
+  .today-icon {
+    width: auto;
+    height: auto;
+    max-width: 30%;
+    max-height: 30%;
+  }
+
+  .forecast-container {
+    margin-top: 5%;
+    text-align: center;
+    width: 49%;
+    height: 21em;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    white-space: nowrap;
+  }
+
   .weather-list-item {
     display: block;
     margin: 3%;
     padding: 1%;
     border: 0.1em solid rgba(51, 51, 51, 0.30);
     max-width: 100%;
+  }
+
+  .day {
+    font-size: 0.5em;
+  }
+
+  .date {
+    font-size: 0.4em;
+  }
+
+  .description {
+    font-size: 0.2em;
+  }
+
+  .icon {
+    margin-top: 10%;
+    width: auto;
+    height: auto;
+    max-width: 40%;
+    max-height: 40%;
+  }
+
+  .high-temp,
+  .low-temp {
+    font-size: 0.8em;
+  }
+}
+
+/* Smartphones (landscape) ----------- */
+@media only screen
+and (min-device-width : 560px) 
+and (max-device-width : 740px) {
+  .weather-header {
+    font-size: 2em;
+    font-weight: bold;
+    margin-top: 1%;
+  }
+
+  .city-dropdown {
+    font-size: 0.8em;
+  }
+
+  .today-forecast {
+    width: 100%;
+    margin-top: 2%;
+    padding: 1%;
+    font-size: 0.8em;
+  }
+
+  .today-date {
+    margin-bottom: 1%;
+    font-weight: bold;
+    font-size: 1.2em;
+  }
+
+  .today-area,
+  .today-icon-contain {
+    margin-top: -3%;
+    /*padding-top: 2%;*/
+    font-size: 1em;
+    /*border-top: 0.1em solid rgba(51, 51, 51, 0.30);*/
+    border: none;
+  }
+
+  .today-info {
+    width: 40%;
+    float: left;
+  }
+
+  .today-icon-contain {
+    width: 60%;
+    float: right;
+  }
+
+  .today-high-temp,
+  .today-low-temp,
+  .today-description {
+    margin: 0.3% 0;
+  }
+
+  .forecast-container {
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+  }
+
+  .today-icon {
+    width: auto;
+    height: auto;
+    max-width: 20%;
+    max-height: 20%;
+  }
+
+  .weather-list-item {
+    display: inline-block;
+    margin: 3%;
+    padding: 1%;
+    border: 0.1em solid rgba(51, 51, 51, 0.30);
+    max-width: 40%;
+  }
+
+  .day {
+    font-size: 0.8em;
+  }
+
+  .date {
+    font-size: 0.7em;
+  }
+
+  .description {
+    font-size: 0.5em;
+  }
+
+  .icon {
+    margin-top: 1%;
+    width: auto;
+    height: auto;
+    max-width: 70%;
+    max-height: 70%;
+  }
+
+  .high-temp,
+  .low-temp {
+    font-size: 0.8em;
   }
 }
