@@ -24,10 +24,6 @@ export default class WeatherListItem extends React.Component {
     }
   }
 
-  // shouldComponentUpdate() {
-  //   return true;
-  // }
-
   render() {
     return (
       <div className="weather-list-item">

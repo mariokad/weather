@@ -19,7 +19,6 @@ export default class Weather extends React.Component {
     }
 
     this.getWeather = this.getWeather.bind(this);
-    // this.getWeatherImage = this.getWeatherImage.bind(this);
   }
 
   makeCookie(val) {
@@ -45,12 +44,6 @@ export default class Weather extends React.Component {
     const query = 'select * from weather.forecast where woeid in (select woeid from geo.places(1) where text="' + this.state.area.toLowerCase() + '")';
     axios.get('https://query.yahooapis.com/v1/public/yql?q=' + query + '&format=json')
         .then(function(res) {
-          // const forecast = res.data.query.results.channel.item.forecast;
-          // for (var i = 0; i < forecast.length; i++) {
-          //   if (context.state.forecast.length < 10) {
-          //     context.setState({forecast: context.state.forecast.concat(context.getWeatherImage(forecast[i]))});
-          //   }
-          // }
           context.setState({forecast: res.data.query.results.channel.item.forecast.slice(0, 10)});
           context.makeCookie(context.state.area);
         })
@@ -108,7 +101,8 @@ export default class Weather extends React.Component {
             <div className="today-info">
               <p className="today-date">{this.state.forecast[0].day}, {this.state.forecast[0].date}</p>
               <p className="today-description">{this.state.forecast[0].text}</p>
-              <span className="today-high-temp"><p className="high-temp-icon">▲</p> {this.state.forecast[0].high}°F</span><span className="today-low-temp"><p className="low-temp-icon">▼</p>{this.state.forecast[0].low}°F</span>
+              <span className="today-high-temp"><p className="high-temp-icon">▲</p> {this.state.forecast[0].high}°F</span>
+              <span className="today-low-temp"><p className="low-temp-icon">▼</p>{this.state.forecast[0].low}°F</span>
             </div>
             <div className="today-icon-contain">
               <img className="today-icon" src={this.getWeatherImage(this.state.forecast[0])} />
