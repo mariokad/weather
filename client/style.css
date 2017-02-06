@@ -105,19 +105,71 @@ body, .city-dropdown {
   border: 0.5em solid #8C93A8;
 }
 
+.forecast-days {
+  width: 100%;
+  margin-top: 2%;
+  border-bottom: 0.2em solid #797B84;
+}
+
+.today-forecast {
+  margin-top: 2%;
+  width: 49%;
+  padding: 1%;
+  float: left;
+  font-size: 1.2em;
+}
+
+.today-date {
+  margin-bottom: 1%;
+  font-weight: bold;
+  font-size: 1.4em;
+}
+
+.today-area,
+.today-icon-contain {
+  margin-top: 5%;
+  margin-bottom: -5%;
+  padding-top: 2%;
+  font-size: 1.3em;
+  border-top: 0.1em solid rgba(51, 51, 51, 0.30);
+}
+
+.today-area {
+  font-weight: bold;
+}
+
+.today-icon {
+  width: auto;
+  height: auto;
+  max-width: 20%;
+  max-height: 20%;
+}
+
+.today-high-temp,
+.today-low-temp,
+.today-description {
+  margin: 1% 0;
+}
+
+.forecast-container {
+  width: 49%;
+  height: 100%;
+  float: right;
+}
+
 .weather-list-item {
   background: rgba(220, 206, 199, 0.30);
-  display: inline-block;
+  display: block;
   margin: 3%;
   padding: 1%;
   border: 0.1em solid rgba(51, 51, 51, 0.30);
   font-size: 1.1em;
-  max-width: 9em; 
-  height: auto;
+  width: 90%;
 }
 
 .date {
   font-weight: bold;
+  margin: 1% 0;
 }
 
 .icon {

@@ -5,10 +5,21 @@ import WeatherList from './WeatherList.jsx';
 export default class Weather extends React.Component {
   constructor() {
     super();
-    this.state = {
-      area: decodeURI(document.cookie.split('area=')[1].split(';')[0]) || '',
-      forecast: JSON.parse(decodeURI(document.cookie.split('forecast=')[1])) || []
+
+    if (document.cookie) {
+      this.state = {
+        area: decodeURI(document.cookie.split('area=')[1].split(';')[0]),
+        forecast: JSON.parse(decodeURI(document.cookie.split('forecast=')[1]))
+      }      
+    } else {
+      this.state = {
+        area: '',
+        forecast: []
+      }
     }
+
+    this.getWeather = this.getWeather.bind(this);
+    // this.getWeatherImage = this.getWeatherImage.bind(this);
   }
 
   makeCookie(val) {
@@ -22,25 +33,56 @@ export default class Weather extends React.Component {
 
   handleSelect(e) {
     e.preventDefault();
+    console.log('target', e.target.value);
     this.setState({
       area: e.target.value
     });
-    this.makeCookie(e.target.value);
     this.getWeather();
   }
 
-  // handleInputChange(e) {
-  //   e.preventDefault();
-  //   this.setState({
-  //     area: e.target.value
-  //   });
-  // }
-
   getWeather() {
-    let query = 'select * from weather.forecast where woeid in (select woeid from geo.places(1) where text="' + this.state.area.toLowerCase() + '")';
+    const context = this;
+    const query = 'select * from weather.forecast where woeid in (select woeid from geo.places(1) where text="' + this.state.area.toLowerCase() + '")';
     axios.get('https://query.yahooapis.com/v1/public/yql?q=' + query + '&format=json')
-      .then((res) => this.setState({forecast: res.data.query.results.channel.item.forecast}))
-      .catch((err) => console.log(err));
+        .then(function(res) {
+          // const forecast = res.data.query.results.channel.item.forecast;
+          // for (var i = 0; i < forecast.length; i++) {
+          //   if (context.state.forecast.length < 10) {
+          //     context.setState({forecast: context.state.forecast.concat(context.getWeatherImage(forecast[i]))});
+          //   }
+          // }
+          context.setState({forecast: res.data.query.results.channel.item.forecast.slice(0, 10)});
+          context.makeCookie(context.state.area);
+        })
+        .catch(function(err) {
+          console.log(err);
+        })
+  }
+
+  getWeatherImage(item) {
+    var code = parseInt(item.code);
+    if ([0, 1, 2, 5, 6, 8, 9, 10, 11, 12, 35, 39, 40].indexOf(code) > -1) {
+      console.log('success');
+      return '../images/cloud.rain.png';
+    } else if ([3, 4, 37, 38, 45, 47].indexOf(code) > -1) {
+      console.log('success');
+      return '../images/cloud.dark.lightning.png';
+    } else if ([7, 13, 14, 15, 16, 17, 18, 41, 42, 43, 46].indexOf(code) > -1) {
+      console.log('success');
+      return '../images/cloud.snow.png';
+    } else if ([19, 20, 21, 22, 23, 24, 25].indexOf(code) > -1) {
+      console.log('success');
+      return '../images/cloud.fog.png';
+    } else if ([26, 27, 28, 29, 30, 44].indexOf(code) > -1) {
+      console.log('success');
+      return '../images/cloud.png';
+    } else if ([32, 34, 36].indexOf(code) > -1) {
+      console.log('success');
+      return '../images/sunny.png';
+    } else if ([31, 33].indexOf(code) > -1) {
+      console.log('success');
+      return '../images/moon.png';
+    }
   }
 
   componentDidUpdate() {
@@ -48,7 +90,6 @@ export default class Weather extends React.Component {
   }
 
   render() {
-    console.log(this.state);
     return (
       <div className="weather-container">
         <p className="weather-header">Weather Seeker</p>
@@ -69,8 +110,20 @@ export default class Weather extends React.Component {
           <br />
           <input className="city-input" type="text" placeholder="City, (State or Country)" onChange={(e) => this.setState({area: e.target.value})}/>
         </div>
-        <div className="forecast-container">
-          <WeatherList forecast={this.state.forecast} />
+        <div className="forecast-days">
+          <div className="today-forecast">
+            <p className="today-date">{this.state.forecast[0].day}, {this.state.forecast[0].date}</p>
+            <p className="today-high-temp">High: {this.state.forecast[0].high}°F</p>
+            <p className="today-low-temp">Low: {this.state.forecast[0].low}°F</p>
+            <p className="today-description">{this.state.forecast[0].text}</p>
+            <div className="today-icon-contain">
+              <img className="today-icon" src={this.getWeatherImage(this.state.forecast[0])} />
+            </div>
+            <div className="today-area">{this.state.area}</div>
+          </div>
+          <div className="forecast-container">
+            <WeatherList forecast={this.state.forecast.slice(1)} />
+          </div>
         </div>
       </div>
     );
