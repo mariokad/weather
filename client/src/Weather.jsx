@@ -107,9 +107,8 @@ export default class Weather extends React.Component {
           <div className="today-forecast">
             <div className="today-info">
               <p className="today-date">{this.state.forecast[0].day}, {this.state.forecast[0].date}</p>
-              <div className="today-high-temp"><p className="high-temp-icon">▲</p> {this.state.forecast[0].high}°F</div>
-              <div className="today-low-temp">{this.state.forecast[0].low}°F <p className="low-temp-icon">▼</p></div>
               <p className="today-description">{this.state.forecast[0].text}</p>
+              <span className="today-high-temp"><p className="high-temp-icon">▲</p> {this.state.forecast[0].high}°F</span><span className="today-low-temp"><p className="low-temp-icon">▼</p>{this.state.forecast[0].low}°F</span>
             </div>
             <div className="today-icon-contain">
               <img className="today-icon" src={this.getWeatherImage(this.state.forecast[0])} />

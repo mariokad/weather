@@ -150,6 +150,13 @@ body, .city-dropdown {
   padding: 0.5%;
 }
 
+.today-high-temp,
+.today-low-temp {
+  display: inline-block;
+  margin: 1%;
+  padding: 2%;
+}
+
 .high-temp-icon {
   color: #EF2917;
 }
@@ -177,9 +184,9 @@ body, .city-dropdown {
 
 .forecast-container {
   width: 49%;
-  height: 25em;
+  height: 23em;
   float: right;
-  margin-top: 4%;
+  margin-top: 3%;
   width: 49%;
   overflow-x: hidden;
   overflow-y: scroll;
@@ -204,7 +211,7 @@ body, .city-dropdown {
 }
 
 .info {
-  width: 70%;
+  width: 50%;
   height: 100%;
   float: right;
 }
@@ -258,10 +265,10 @@ and (max-device-width : 420px) {
   }
 
   .forecast-container {
-    margin-top: 5%;
+    margin-top: 3%;
     text-align: center;
     width: 49%;
-    height: 21em;
+    height: 16em;
     overflow-x: hidden;
     overflow-y: scroll;
     white-space: nowrap;
@@ -331,9 +338,7 @@ and (max-device-width : 740px) {
   .today-area,
   .today-icon-contain {
     margin-top: -3%;
-    /*padding-top: 2%;*/
     font-size: 1em;
-    /*border-top: 0.1em solid rgba(51, 51, 51, 0.30);*/
     border: none;
   }
 
