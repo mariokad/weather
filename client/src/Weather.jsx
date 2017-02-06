@@ -32,7 +32,6 @@ export default class Weather extends React.Component {
 
   handleSelect(e) {
     e.preventDefault();
-    console.log('target', e.target.value);
     this.setState({
       area: e.target.value
     });
@@ -40,7 +39,7 @@ export default class Weather extends React.Component {
   }
 
   getWeather() {
-    const context = this;
+    let context = this;
     const query = 'select * from weather.forecast where woeid in (select woeid from geo.places(1) where text="' + this.state.area.toLowerCase() + '")';
     axios.get('https://query.yahooapis.com/v1/public/yql?q=' + query + '&format=json')
         .then(function(res) {
@@ -76,6 +75,7 @@ export default class Weather extends React.Component {
   }
 
   render() {
+    let context = this;
     let city = this.state.area.split(', ')[0];
     let stateco = this.state.area.split(', ')[1];
     return (
@@ -98,16 +98,23 @@ export default class Weather extends React.Component {
         </div>
         <div className="forecast-days">
           <div className="today-forecast">
-            <div className="today-info">
-              <p className="today-date">{this.state.forecast[0].day}, {this.state.forecast[0].date}</p>
-              <p className="today-description">{this.state.forecast[0].text}</p>
-              <span className="today-high-temp"><p className="high-temp-icon">▲</p> {this.state.forecast[0].high}°F</span>
-              <span className="today-low-temp"><p className="low-temp-icon">▼</p>{this.state.forecast[0].low}°F</span>
-            </div>
-            <div className="today-icon-contain">
-              <img className="today-icon" src={this.getWeatherImage(this.state.forecast[0])} />
-            </div>
-            <div className="today-area">{city.charAt(0).toUpperCase() + city.slice(1)  + ', ' + stateco.charAt(0).toUpperCase() + stateco.slice(1)}</div>
+            {
+              (context.state.forecast.length === 0) ?
+              <div><p className="today-day">Choose a city</p></div>
+              :
+              <div>
+                <div className="today-info">
+                  <p className="today-date">{this.state.forecast[0].day}, {this.state.forecast[0].date}</p>
+                  <p className="today-description">{this.state.forecast[0].text}</p>
+                  <span className="today-high-temp"><p className="high-temp-icon">▲</p> {this.state.forecast[0].high}°F</span>
+                  <span className="today-low-temp"><p className="low-temp-icon">▼</p>{this.state.forecast[0].low}°F</span>
+                </div>
+                <div className="today-icon-contain">
+                  <img className="today-icon" src={this.getWeatherImage(this.state.forecast[0])} />
+                </div>
+                <div className="today-area">{city.charAt(0).toUpperCase() + city.slice(1)  + ', ' + stateco.charAt(0).toUpperCase() + stateco.slice(1)}</div>
+              </div>
+            }
           </div>
           <div className="forecast-container">
             <WeatherList forecast={this.state.forecast.slice(1)} />
