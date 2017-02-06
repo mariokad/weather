@@ -90,6 +90,8 @@ export default class Weather extends React.Component {
   }
 
   render() {
+    let city = this.state.area.split(', ')[0];
+    let stateco = this.state.area.split(', ')[1];
     return (
       <div className="weather-container">
         <p className="weather-header">Weather Seeker</p>
@@ -119,7 +121,8 @@ export default class Weather extends React.Component {
             <div className="today-icon-contain">
               <img className="today-icon" src={this.getWeatherImage(this.state.forecast[0])} />
             </div>
-            <div className="today-area">{this.state.area}</div>
+            <div className="today-area">{city.charAt(0).toUpperCase() + city.slice(1)  + ', ' + stateco.charAt(0).toUpperCase() + stateco.slice(1)}
+              </div>
           </div>
           <div className="forecast-container">
             <WeatherList forecast={this.state.forecast.slice(1)} />
