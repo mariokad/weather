@@ -6,7 +6,7 @@
   "scripts": {
     "webpack": "webpack -w",
     "server": "node ./server/index.js",
-    "start": "concurrent --kill-others \"npm run webpack\" \"npm run server\"",
+    "start": "\"npm run webpack\" \"npm run server\"",
     "test": "node ./test/test.js --compilers js:babel-core/register --recursive"
   },
   "repository": {
