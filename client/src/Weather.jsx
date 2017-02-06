@@ -62,25 +62,18 @@ export default class Weather extends React.Component {
   getWeatherImage(item) {
     var code = parseInt(item.code);
     if ([0, 1, 2, 5, 6, 8, 9, 10, 11, 12, 35, 39, 40].indexOf(code) > -1) {
-      console.log('success');
       return '../images/cloud.rain.png';
     } else if ([3, 4, 37, 38, 45, 47].indexOf(code) > -1) {
-      console.log('success');
       return '../images/cloud.dark.lightning.png';
     } else if ([7, 13, 14, 15, 16, 17, 18, 41, 42, 43, 46].indexOf(code) > -1) {
-      console.log('success');
       return '../images/cloud.snow.png';
     } else if ([19, 20, 21, 22, 23, 24, 25].indexOf(code) > -1) {
-      console.log('success');
       return '../images/cloud.fog.png';
     } else if ([26, 27, 28, 29, 30, 44].indexOf(code) > -1) {
-      console.log('success');
       return '../images/cloud.png';
     } else if ([32, 34, 36].indexOf(code) > -1) {
-      console.log('success');
       return '../images/sunny.png';
     } else if ([31, 33].indexOf(code) > -1) {
-      console.log('success');
       return '../images/moon.png';
     }
   }
@@ -115,8 +108,8 @@ export default class Weather extends React.Component {
         <div className="forecast-days">
           <div className="today-forecast">
             <p className="today-date">{this.state.forecast[0].day}, {this.state.forecast[0].date}</p>
-            <p className="today-high-temp">High: {this.state.forecast[0].high}°F</p>
-            <p className="today-low-temp">Low: {this.state.forecast[0].low}°F</p>
+            <div className="today-high-temp"><p className="high-temp-icon">▲</p> {this.state.forecast[0].high}°F</div>
+            <div className="today-low-temp">{this.state.forecast[0].low}°F <p className="low-temp-icon">▼</p></div>
             <p className="today-description">{this.state.forecast[0].text}</p>
             <div className="today-icon-contain">
               <img className="today-icon" src={this.getWeatherImage(this.state.forecast[0])} />
